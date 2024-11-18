@@ -1,0 +1,22 @@
+﻿@model CarViewModel
+
+@{
+    ViewData["Title"] = "مركوبات";
+}
+
+<div class="panel panel-default todo-panel">
+    <div class="panel-heading">@ViewData["Title"]</div>
+    <section class="layout">
+        @foreach (var car in Model.cars)
+        {
+            
+            <div class="car-info">
+                <img class="car-img" src="@car.imgURL" alt="@car.imgURL"/>
+                <div class="details">@car.manufacture @car.model @car.year</div>
+                <div class="details">@car.price$</div>
+                <p>@Html.ActionLink("click", "CarDetails", "Cars", new { carID = car.carId })</p>
+            </div>
+            
+        }
+    </section>
+</div>

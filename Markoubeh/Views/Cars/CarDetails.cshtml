@@ -1,0 +1,12 @@
+﻿@model Car
+
+<div class="parent">
+    <div class="child1"> 
+        <img class="car-image" src="@Model.imgURL" alt="@Model.imgURL"/>
+    </div>
+    <div class="child2">
+        <p class="desc">@Model.manufacture @Model.model @Model.year</p>
+        <p class="desc">@Model.price$ per day</p>
+        <button>Rent</button>
+    </div>
+</div>

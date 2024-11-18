@@ -1,0 +1,17 @@
+﻿@model Car
+@{
+    ViewData["Title"] = "Add A Car";
+}
+<div class="panel-heading">@ViewData["Title"]</div>
+
+<div class="form-container">
+<form asp-action="AddCar" method="post">
+    <lable class="lbl" asp-for="manufacture">Manufacture:</lable> <input asp-for="manufacture"/><br />
+    <lable class="lbl" asp-for="model">Model:</lable> <input asp-for="model" /><br />
+    <lable class="lbl" asp-for="year">Year:</lable> <input asp-for="year" /><br />
+    <lable class="lbl" asp-for="color">Color:</lable> <input asp-for="color" /><br />
+    <lable class="lbl" asp-for="price">Price:</lable> <input asp-for="price" /><br />
+    <lable class="lbl" asp-for="description">Description:</lable> <input asp-for="description" /><br />
+    <button type="submit">Add</button>
+</form>
+</div>
