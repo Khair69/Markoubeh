@@ -7,6 +7,12 @@
     <div class="child2">
         <p class="desc">@Model.manufacture @Model.model @Model.year</p>
         <p class="desc">@Model.price$ per day</p>
-        <button>Rent</button>
+        <form asp-action="RentCar" method="post">
+            <input asp-for="carId" type="hidden"/>
+            <input id="numOfDays" name="numOfDays" type="number" />
+            <button type="submit">Rent</button>
+        </form>
+
+
     </div>
 </div>

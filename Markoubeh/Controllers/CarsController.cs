@@ -43,11 +43,17 @@ namespace Markoubeh.Controllers
 
         public async Task<IActionResult> CarDetails(Guid carID)
         {
-            Console.WriteLine(carID);
             var currCar = await _carsService.GetCarByIdAsync(carID);
-            Console.WriteLine(currCar.manufacture);
 
             return View(currCar);
+        }
+
+        public async Task<IActionResult> RentCar(Guid carID, int numOfDays)
+        {
+            var successful = await _carsService.RentCarAsync(carID, numOfDays);
+            if (!successful) return BadRequest("Could not rent car");
+
+            return RedirectToAction("Index");
         }
     }
 }

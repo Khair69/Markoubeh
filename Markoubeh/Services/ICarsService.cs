@@ -9,5 +9,7 @@ namespace Markoubeh.Services
         Task<bool> AddCarAsync(Car newCar);
 
         Task<Car> GetCarByIdAsync(Guid carId);
+
+        Task<bool> RentCarAsync(Guid carId, int numOfDays);
     }
 }

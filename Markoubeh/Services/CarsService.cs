@@ -33,5 +33,20 @@ namespace Markoubeh.Services
         {
             return await _context.Cars.Where(x => x.carId == carId).FirstAsync();
         }
+
+        public async Task<bool> RentCarAsync(Guid carId, int numOfDays)
+        {
+            Reservation newRes = new Reservation();
+
+            newRes.ReservationId = Guid.NewGuid();
+            newRes.carId = carId;
+            newRes.startDate = DateTime.Now;
+            newRes.endDate = DateTime.Now.AddDays(numOfDays);
+
+            _context.Reservations.Add(newRes);
+
+            var saveResault = await _context.SaveChangesAsync();
+            return saveResault == 1;
+        }
     }
 }

@@ -14,7 +14,7 @@
                 <img class="car-img" src="@car.imgURL" alt="@car.imgURL"/>
                 <div class="details">@car.manufacture @car.model @car.year</div>
                 <div class="details">@car.price$</div>
-                <p>@Html.ActionLink("click", "CarDetails", "Cars", new { carID = car.carId })</p>
+                <p>@Html.ActionLink("Rent", "CarDetails", "Cars", new { carID = car.carId })</p>
             </div>
             
         }
