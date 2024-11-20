@@ -1,7 +1,10 @@
 ﻿using Markoubeh.Data;
 using Markoubeh.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections;
+using System.Linq;
 
 namespace Markoubeh.Services
 {
@@ -16,7 +19,13 @@ namespace Markoubeh.Services
 
         public async Task<Car[]> GetAvailableCarsAsync()
         {
-            return await _context.Cars.Where(x => x.available == true).ToArrayAsync();
+            var Res = await _context.Cars.Where(x => x.available == true).ToArrayAsync();
+            foreach (var r in Res) 
+            {
+                Console.WriteLine(r);
+                if (!await IsCarAvail(r)) { Res = Res.Where(val => val != r).ToArray(); }
+            }
+            return Res;
         }
 
         public async Task<bool> AddCarAsync(Car newCar)
@@ -47,6 +56,16 @@ namespace Markoubeh.Services
 
             var saveResault = await _context.SaveChangesAsync();
             return saveResault == 1;
+        }
+
+        public async Task<bool> IsCarAvail(Car carr)
+        {
+            var res = await _context.Reservations.Where(x => x.carId == carr.carId).ToArrayAsync();
+            foreach (var r in res)
+            {
+                if(r.startDate <= DateTime.Now && r.endDate >= DateTime.Now) return false; 
+            }
+            return true;
         }
     }
 }
